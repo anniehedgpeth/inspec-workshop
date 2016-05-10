@@ -24,3 +24,22 @@ control "cis-1-5-1" do
     its('owner') { should eq 'root' }
   end
 end
+
+control "cis-1-5-2" do
+  impact 1.0
+  title "1.5.2 Set Permissions on /etc/grub.conf (Scored)"
+  desc "Set permission on the /etc/grub.conf file to read and write for root only."
+  describe file('/etc/grub.conf') do
+    it { should be_writable.by('owner') }
+    it { should be_readable.by('owner') }
+  end
+end
+
+control "cis-1-5-3" do
+  impact 1.0
+  title "1.5.3 Set Boot Loader Password (Scored)"
+  desc "Setting the boot loader password will require that the person who is rebooting the must enter a password before being able to set command line boot parameters."
+  describe file('/boot/etc/grub.conf') do
+    its('content') { should match /^password/ }
+  end
+end
