@@ -39,7 +39,7 @@ control "cis-1-5-3" do
   impact 1.0
   title "1.5.3 Set Boot Loader Password (Scored)"
   desc "Setting the boot loader password will require that the person who is rebooting the must enter a password before being able to set command line boot parameters."
-  describe file('/boot/etc/grub.conf') do
+  describe file('/etc/grub.conf') do
     its('content') { should match /^password/ }
   end
 end
