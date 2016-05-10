@@ -15,3 +15,12 @@ control "cis-1-2-2" do
     its('content') { should match /gpgcheck=1/ }
   end
 end
+
+control "cis-1-5-1" do
+  impact 1.0
+  title "1.5.1 Set User/Group Owner on /etc/grub.conf (Scored)"
+  desc "Set the owner and group of /etc/grub.conf to the root user."
+  describe command('stat -L -c "%u %g" /etc/grub.conf | egrep "0 0"') do
+   its('stdout') { should match /0 0/}
+  end
+end
