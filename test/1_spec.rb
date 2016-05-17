@@ -3,7 +3,7 @@ control "cis-1-2-1" do
   title "1.2.1 Verify CentOS GPG Key is Installed (Scored)"
   desc "CentOS cryptographically signs updates with a GPG key to verify that they are valid."
   describe command('rpm -q --queryformat "%{SUMMARY}\n" gpg-pubkey') do
-   its('stdout') { should match /CentOS 6 Official Signing Key/}
+   its('stdout') { should match /CentOS 6 Official Signing Key/ }
   end
 end
 
@@ -39,7 +39,19 @@ control "cis-1-5-3" do
   impact 1.0
   title "1.5.3 Set Boot Loader Password (Scored)"
   desc "Setting the boot loader password will require that the person who is rebooting the must enter a password before being able to set command line boot parameters."
-  describe file('/etc/grub.conf') do
-    its('content') { should match /^password/ }
+  describe file("/etc/grub.conf") do
+    its(:content) { should match /^password/ }
+  end
+end
+
+control "cis-1-6-1" do
+  impact 1.0
+  title "1.6.1 Restrict Core Dumps"
+  desc "A core dump is the memory of an executable program. It is generally used to determine why a program aborted. It can also be used to glean confidential information from a core file. The system provides the ability to set a soft limit for core dumps, but this can be overridden by the user."
+  describe file("/etc/security/limits.conf") do
+    its(:content) { should match /hard core 0/ }
+  end  
+  describe file("/etc/sysctl.conf") do
+   its(:content) { should match /fs.suid_dumpable = 0/ }
   end
 end
