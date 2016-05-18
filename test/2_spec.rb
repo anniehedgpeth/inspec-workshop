@@ -86,13 +86,31 @@ control "cis-2-1-9" do
   describe package('talk') do
     it { should_not be_installed }
   end
-
 end
+
 control "cis-2-1-10" do
   impact 1.0
   title "2.1.10 Remove talk-server (Scored)"
   desc "The talk software makes it possible for users to send and receive messages across systems through a terminal session. The talk client (allows initiate of talk sessions) is installed by default." 
   describe package('talk-server') do
     it { should_not be_installed }
+  end
+end
+
+control "cis-2-1-11" do
+  impact 2.0
+  title "2.1.11 Remove xinetd (Scored)"
+  desc "The eXtended InterNET Daemon (xinetd) is an open source super daemon that replaced the original inetd daemon. The xinetd daemon listens for well known services and dispatches the appropriate daemon to properly respond to service requests." 
+  describe package('xinetd') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-2-1-12" do
+  impact 1.0
+  title "2.1.12 Disable chargen-dgram (Scored)"
+  desc "chargen-dram is a network service that responds with 0 to 512 ASCII characters for each datagram it receives. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
+  describe service('chargen-dgram') do
+    it { should_not be_enabled }
   end
 end
