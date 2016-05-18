@@ -39,8 +39,9 @@ control "cis-1-5-3" do
   impact 1.0
   title "1.5.3 Set Boot Loader Password (Scored)"
   desc "Setting the boot loader password will require that the person who is rebooting the must enter a password before being able to set command line boot parameters."
-  describe file("/etc/grub.conf") do
-    its(:content) { should match /^password/ }
+  describe file('/etc/grub.conf') do
+    its(:content) { should match /password --md5/ }
+#inspec exec test/1_spec.rb -t ssh://annie@ipaddress --password 'password' --sudo-password=password --sudo
   end
 end
 
@@ -54,4 +55,13 @@ control "cis-1-6-1" do
   describe file("/etc/sysctl.conf") do
    its(:content) { should match /fs.suid_dumpable = 0/ }
   end
+end
+
+control "cis-1-6-3" do
+  impact 1.0
+  title "1.6.3 Enable Randomized Virtual Memory Region Placement (Scored)"
+  desc "Set the system flag to force randomized virtual memory region placement."
+  describe command("sysctl kernel.randomize_va_space") do
+    its('stdout') { should match /kernel.randomize_va_space = 2/ }
+  end  
 end
