@@ -78,3 +78,21 @@ control "cis-2-1-8" do
     it { should_not be_installed }
   end
 end
+
+control "cis-2-1-9" do
+  impact 1.0
+  title "2.1.9 Remove talk (Scored)"
+  desc "The talk software makes it possible for users to send and receive messages across systems through a terminal session. The talk client (allows initialization of talk sessions) is installed by default." 
+  describe package('talk') do
+    it { should_not be_installed }
+  end
+
+end
+control "cis-2-1-10" do
+  impact 1.0
+  title "2.1.10 Remove talk-server (Scored)"
+  desc "The talk software makes it possible for users to send and receive messages across systems through a terminal session. The talk client (allows initiate of talk sessions) is installed by default." 
+  describe package('talk-server') do
+    it { should_not be_installed }
+  end
+end
