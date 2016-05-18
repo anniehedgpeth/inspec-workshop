@@ -33,3 +33,12 @@ control "cis-2-1-3" do
     it { should_not be_installed }
   end
 end
+
+control "cis-2-1-4" do
+  impact 1.0
+  title "2.1.4 Remove rsh (Scored)"
+  desc "The rsh package contains the client commands for the rsh services." 
+  describe package('rsh') do
+    it { should_not be_installed }
+  end
+end
