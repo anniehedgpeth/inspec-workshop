@@ -42,3 +42,12 @@ control "cis-2-1-4" do
     it { should_not be_installed }
   end
 end
+
+control "cis-2-1-5" do
+  impact 1.0
+  title "2.1.5 Remove NIS Client (Scored)"
+  desc "The Network Information Service (NIS), formerly known as Yellow Pages, is a client-server directory service protocol used to distribute system configuration files. The NIS client (ypbind) was used to bind a machine to an NIS server and receive the distributed configuration files." 
+  describe package('ypbind') do
+    it { should_not be_installed }
+  end
+end
