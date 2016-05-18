@@ -51,3 +51,30 @@ control "cis-2-1-5" do
     it { should_not be_installed }
   end
 end
+
+control "cis-2-1-6" do
+  impact 1.0
+  title "2.1.6 Remove NIS Server (Scored)"
+  desc "The Network Information Service (NIS) (formally known as Yellow Pages) is a client-server directory service protocol for distributing system configuration files. The NIS server is a collection of programs that allow for the distribution of configuration files." 
+  describe package('ypserv') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-2-1-7" do
+  impact 1.0
+  title "2.1.7 Remove tftp (Scored)"
+  desc "Trivial File Transfer Protocol (TFTP) is a simple file transfer protocol, typically used to automatically transfer configuration or boot files between machines. TFTP does not support authentication and can be easily hacked. The package tftp is a client program that allows for connections to a tftp server." 
+  describe package('tftp') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-2-1-8" do
+  impact 1.0
+  title "2.1.8 Remove tftp-server (Scored)"
+  desc "TriTrivial File Transfer Protocol (TFTP) is a simple file transfer protocol, typically used to automatically transfer configuration or boot machines from a boot server. The package tftp-server is the server package used to define and support a TFTP server." 
+  describe package('tftp-server') do
+    it { should_not be_installed }
+  end
+end
