@@ -135,7 +135,7 @@ end
 
 control "cis-2-1-15" do
   impact 1.0
-  title "2.1.15 Disable daytime-stream (Scored))"
+  title "2.1.15 Disable daytime-stream (Scored)"
   desc "daytime-stream is a network service that respondes with the server's current date and time. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
   describe service('daytime-stream') do
     it { should_not be_enabled }
@@ -144,8 +144,8 @@ end
 
 control "cis-2-1-16" do
   impact 1.0
-  title "2.1.16 Disable echo-dgram (Scored))"
-  desc "echo-dgram is a network service that respondes to clients with the data sent to it by the client. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
+  title "2.1.16 Disable echo-dgram (Scored)"
+  desc "echo-dgram is a network service that responds to clients with the data sent to it by the client. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
   describe service('echo-dgram') do
     it { should_not be_enabled }
   end
@@ -153,9 +153,18 @@ end
 
 control "cis-2-1-17" do
   impact 1.0
-  title "2.1.17 Disable echo-stream (Scored))"
+  title "2.1.17 Disable echo-stream (Scored)"
   desc "echo-stream is a network service that respondes to clients with the data sent to it by the client. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
   describe service('echo-stream') do
+    it { should_not be_enabled }
+  end
+end
+
+control "cis-2-1-18" do
+  impact 1.0
+  title "2.1.18 Disable tcpmux-server (Scored)"
+  desc "tcpmux-server is a network service that allows a client to access other network services running on the server. It is recommended that this service be disabled." 
+  describe service('tcpmux-server') do
     it { should_not be_enabled }
   end
 end
