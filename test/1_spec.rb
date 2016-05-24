@@ -22,6 +22,7 @@ control "cis-1-5-1" do
   desc "Set the owner and group of /etc/grub.conf to the root user."
   describe file('/etc/grub.conf') do
     its('owner') { should eq 'root' }
+    its('group') { should eq 'root'}
   end
 end
 

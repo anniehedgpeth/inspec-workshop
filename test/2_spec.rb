@@ -114,3 +114,12 @@ control "cis-2-1-12" do
     it { should_not be_enabled }
   end
 end
+
+control "cis-2-1-13" do
+  impact 1.0
+  title "2.1.13 Disable chargen-stream (Scored)"
+  desc "chargen-stream is a network service that responds with 0 to 512 ASCII characters for each connection it receives. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
+  describe service('chargen-stream') do
+    it { should_not be_enabled }
+  end
+end
