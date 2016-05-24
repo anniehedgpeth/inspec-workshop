@@ -123,3 +123,12 @@ control "cis-2-1-13" do
     it { should_not be_enabled }
   end
 end
+
+control "cis-2-1-14" do
+  impact 1.0
+  title "2.1.14 Disable daytime-dgram (Scored)"
+  desc "daytime-dgram is a network service that responds with the server's current date and time. This service is intended for debugging and testing purposes. It is recommended that this service be disabled." 
+  describe service('daytime-dgram') do
+    it { should_not be_enabled }
+  end
+end
