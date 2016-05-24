@@ -132,3 +132,12 @@ control "cis-2-1-14" do
     it { should_not be_enabled }
   end
 end
+
+control "cis-2-1-15" do
+  impact 1.0
+  title "2.1.15 Disable daytime-stream (Scored))"
+  desc "daytime-stream is a network service that respondes with the server's current date and time. This service is intended for debugging and testing puposes. It is recommended that this service be disabled." 
+  describe service('daytime-stream') do
+    it { should_not be_enabled }
+  end
+end
