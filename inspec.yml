@@ -1,0 +1,8 @@
+name: inspec-workshop
+title: CIS CentOS 6 InSpec Worshop
+maintainer: Annie Hedgpeth
+copyright: Annie Hedgpeth
+copyright_email: annie.hedgpeth@gmail.com
+license: All Rights Reserved
+summary: An exercise in building a CentOS profile by writing the controls with InSpec
+version: 0.1.0
