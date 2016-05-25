@@ -36,3 +36,25 @@ control "cis-3-4" do
     it { should_not be_enabled }
   end
 end
+
+control "cis-3-5" do
+  impact 1.0
+  title "3.5 Remove DHCP Server (Scored)"
+  desc "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to be dynamically assigned IP addresses." 
+  describe service('DHCP') do
+    it { should_not be_enabled }
+  end
+end
+
+control "cis-3-6" do
+  impact 1.0
+  title "3.6 Configure Network Time Protocol (NTP) (Scored)"
+  desc "The Network Time Protocol (NTP) is designed to synchronize system clocks across a variety of systems and use a source that is highly accurate. The version of NTP delivered with CentOS can be found at http://www.ntp.org. NTP can be configured to be a client and/or a server." 
+  describe ntp_conf do
+    its('server') { should_not eq nil }
+    its('restrict') { should include '-6 default kod nomodify notrap nopeer noquery'}
+  end
+  describe file('/etc/sysconfig/ntpd') do
+    its('content') { should match /OPTIONS="-u ntp:ntp -p \/var\/run\/ntpd.pid.*"/ }
+  end
+end
