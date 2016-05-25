@@ -98,7 +98,7 @@ control "cis-2-1-10" do
 end
 
 control "cis-2-1-11" do
-  impact 2.0
+  impact 1.0
   title "2.1.11 Remove xinetd (Scored)"
   desc "The eXtended InterNET Daemon (xinetd) is an open source super daemon that replaced the original inetd daemon. The xinetd daemon listens for well known services and dispatches the appropriate daemon to properly respond to service requests." 
   describe package('xinetd') do
