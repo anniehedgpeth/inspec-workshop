@@ -58,3 +58,91 @@ control "cis-3-6" do
     its('content') { should match /OPTIONS="-u ntp:ntp -p \/var\/run\/ntpd.pid.*"/ }
   end
 end
+
+control "cis-3-7" do
+  impact 1.0
+  title "3.7 Remove LDAP (Not Scored)"
+  desc "The Lightweight Directory Access Protocol (LDAP) was introduced as a replacement for NIS/YP. It is a service that provides a method for looking up information from a central database. The default client/server LDAP application for CentOS is OpenLDAP." 
+  describe package('openldap-servers') do
+    it { should_not be_installed }
+  end
+  describe package('openldap-clients') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-8" do
+  impact 1.0
+  title "3.8 Disable NFS and RPC (Not Scored)"
+  desc "The Network File System (NFS) is one of the first and most widely distributed file systems in the UNIX environment. It provides the ability for systems to mount file systems of other servers through the network." 
+  desc "The Dynamic Host Configuration Protocol (DHCP) is a service that allows machines to be dynamically assigned IP addresses." 
+  describe service('NFS') do
+    it { should_not be_enabled }
+  end
+  describe service('RPC') do
+    it { should_not be_enabled }
+  end
+end
+
+control "cis-3-9" do
+  impact 1.0
+  title "3.9 Remove DNS Server (Not Scored)"
+  desc "The Domain Name System (DNS) is a hierarchical naming system that maps names to IP addresses for computers, services and other resources connected to a network." 
+  describe service('DNS') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-10" do
+  impact 1.0
+  title "3.10 Remove FTP Server (Not Scored)"
+  desc "The File Transfer Protocol (FTP) provides networked computers with the ability to transfer files." 
+  describe service('FTP') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-11" do
+  impact 1.0
+  title "3.11 Remove HTTP Server (Not Scored)"
+  desc "HTTP or web servers provide the ability to host web site content. The default HTTP server shipped with CentOS Linux is Apache." 
+  describe service('HTTP') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-12" do
+  impact 1.0
+  title "3.12 Remove Dovecot (IMAP and POP3 services) (Not Scored)"
+  desc "Unless POP3 and/or IMAP servers are to be provided to this server, it is recommended that the service be deleted to reduce the potential attack surface." 
+  describe service('Dovecot') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-13" do
+  impact 1.0
+  title "3.13 Remove Samba (Not Scored)"
+  desc "The Samba daemon allows system administrators to configure their Linux systems to share file systems and directories with Windows desktops. Samba will advertise the file systems and directories via the Server Message Block (SMB) protocol. Windows desktop users will be able to mount these directories and file systems as letter drives on their systems." 
+  describe service('Samba') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-14" do
+  impact 1.0
+  title "3.14 Remove HTTP Proxy Server (Not Scored)"
+  desc "If there is no need for a proxy server, it is recommended that the squid proxy be deleted to reduce the potential attack surface." 
+  describe service('squid') do
+    it { should_not be_installed }
+  end
+end
+
+control "cis-3-15" do
+  impact 1.0
+  title "3.15 Remove SNMP Server (Not Scored)"
+  desc "The SNMP server communicates using SNMP v1, which transmits data in the clear and does not require authentication to execute commands. Unless absolutely necessary, it is recommended that the SNMP service not be used." 
+  describe service('SNMP') do
+    it { should_not be_installed }
+  end
+end
