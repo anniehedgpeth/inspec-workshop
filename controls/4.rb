@@ -85,3 +85,60 @@ control "cis-4-5-1" do
   end
 end
 #not written properly and may need remediation
+
+control "cis-4-5-2" do
+  impact 1.0
+  title "4.5.2 Create /etc/hosts.allow (Not Scored)"
+  desc "The /etc/hosts.allow file supports access control by IP and helps ensure that only authorized systems can connect to the server." 
+  describe file('/etc/hosts.allow') do
+    it { should exist }
+  end
+end
+#might need specified ip address permissions 
+
+control "cis-4-5-3" do
+  impact 1.0
+  title "4.5.3 Verify Permissions on /etc/hosts.allow (Scored)"
+  desc "It is critical to ensure that the /etc/hosts.allow file is protected from unauthorized write access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions." 
+  describe file("/etc/hosts.allow") do
+    it { should exist }
+    it { should_not be_executable.by "group" }
+    it { should be_readable.by "group" }
+    it { should_not be_writable.by "group" }
+    it { should_not be_executable.by "other" }
+    it { should be_readable.by "other" }
+    it { should_not be_writable.by "other" }
+    it { should_not be_executable.by "owner" }
+    it { should be_readable.by "owner" }
+    it { should be_writable.by "owner" }
+  end
+end
+
+control "cis-4-5-4" do
+  impact 1.0
+  title "4.5.4 Create /etc/hosts.deny (Not Scored)"
+  desc "The /etc/hosts.deny file serves as a failsafe so that any host not specified in /etc/hosts.allow is denied access to the server." 
+  describe file('/etc/hosts.deny') do
+    it { should exist }
+  end
+end
+#might need to be configured with ip addresses included
+
+control "cis-4-5-5" do
+  impact 1.0
+  title "4.5.5 Verify Permissions on /etc/hosts.deny (Scored)"
+  desc "It is critical to ensure that the /etc/hosts.deny file is protected from unauthorized write access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions." 
+  describe file('/etc/hosts.deny') do
+    its('owner') { should eq 'root' }
+    it { should exist }
+  end
+end
+
+control "cis-4-7" do
+  impact 1.0
+  title "4.7 Enable IPtables (Scored)"
+  desc "IPtables provides extra protection for the Linux system by limiting communications in and out of the box to specific IPv4 addresses and ports." 
+  describe service('iptables') do
+    it { should be_enabled }
+  end
+end
