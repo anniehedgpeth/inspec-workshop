@@ -100,18 +100,27 @@ control "cis-4-5-3" do
   impact 1.0
   title "4.5.3 Verify Permissions on /etc/hosts.allow (Scored)"
   desc "It is critical to ensure that the /etc/hosts.allow file is protected from unauthorized write access. Although it is protected by default, the file permissions could be changed either inadvertently or through malicious actions." 
-  describe file("/etc/hosts.allow") do
-    it { should exist }
-    it { should_not be_executable.by "group" }
-    it { should be_readable.by "group" }
-    it { should_not be_writable.by "group" }
-    it { should_not be_executable.by "other" }
-    it { should be_readable.by "other" }
-    it { should_not be_writable.by "other" }
-    it { should_not be_executable.by "owner" }
-    it { should be_readable.by "owner" }
-    it { should be_writable.by "owner" }
+  describe file('/etc/hosts.allow') do
+    its('owner') { should eq 'root' }
   end
+  describe file('/etc/hosts.allow') do
+    its('mode') { should eq 0644 }
+  end
+  describe file('/etc/hosts.allow') do
+    its('mode') { should cmp 0644 }
+  end
+#  describe file("/etc/hosts.allow") do
+#    it { should exist }
+#    it { should_not be_executable.by "group" }
+#    it { should be_readable.by "group" }
+#    it { should_not be_writable.by "group" }
+#    it { should_not be_executable.by "other" }
+#    it { should be_readable.by "other" }
+#    it { should_not be_writable.by "other" }
+#    it { should_not be_executable.by "owner" }
+#    it { should be_readable.by "owner" }
+#    it { should be_writable.by "owner" }
+#  end
 end
 
 control "cis-4-5-4" do
