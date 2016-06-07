@@ -6,19 +6,19 @@ control "cis-4-1-1" do
    its('value') { should eq 0 }
  end
 end  
-#
-#control "cis-4-1-2" do
-#  impact 1.0
-#  title "4.1.2 Disable Send Packet Redirects (Scored)"
-#  desc "An attacker could use a compromised host to send invalid ICMP redirects to other router #devices in an attempt to corrupt routing and have users access a system set up by the attacker as #opposed to a valid system." 
-#  describe kernel_parameter('net.ipv4.conf.all.send_redirects') do
-#    its('value') { should eq 0 }
-#  end
+
+control "cis-4-1-2" do
+ impact 1.0
+ title "4.1.2 Disable Send Packet Redirects (Scored)"
+ desc "An attacker could use a compromised host to send invalid ICMP redirects to other router #devices in an attempt to corrupt routing and have users access a system set up by the attacker as #opposed to a valid system." 
+ describe kernel_parameter('net.ipv4.conf.all.send_redirects') do
+   its('value') { should eq 0 }
+ end
 #  describe kernel_parameter('net.ipv4.conf.default.send_redirects') do
 #  its('value') { should eq 0 }
 #  end
-#end
-#
+end
+
 #control "cis-4-2-1" do
 #  impact 1.0
 #  title "4.2.1 Disable Source Routed Packet Acceptance (Scored)"
