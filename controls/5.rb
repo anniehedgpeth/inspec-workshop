@@ -7,17 +7,17 @@
 #   end
 # end
 
-# control "cis-5-1-2" do
-#   impact 1.0
-#   title "5.1.2 Activate the rsyslog Service (Scored)"
-#   desc "It is important to ensure that syslog is turned off so that it does not interfere with the rsyslog service." 
-#   describe package('rsyslog') do
-#     it { should be_enabled }
-#   end
-#   describe package('syslog') do
-#     it { should be_disabled }
-#   end
-# end
+control "cis-5-1-2" do
+  impact 1.0
+  title "5.1.2 Activate the rsyslog Service (Scored)"
+  desc "It is important to ensure that syslog is turned off so that it does not interfere with the rsyslog service." 
+  describe service('rsyslog') do
+    it { should be_enabled }
+  end
+  describe service("syslog").runlevels(/.*/) do
+    it { should be_disabled }
+  end
+end
 
 control "cis-5-1-3" do
   impact 1.0
