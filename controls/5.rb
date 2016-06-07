@@ -1,23 +1,23 @@
-control "cis-5-1-1" do
-  impact 1.0
-  title "5.1.1 Install the rsyslog package (Scored)"
-  desc "The security enhancements of rsyslog such as connection-oriented (i.e. TCP) transmission of logs, the option to log to database formats, and the encryption of log data en route to a central logging server) justify installing and configuring the package." 
-  describe package('rsyslog') do
-    it { should be_installed }
-  end
-end
+# control "cis-5-1-1" do
+#   impact 1.0
+#   title "5.1.1 Install the rsyslog package (Scored)"
+#   desc "The security enhancements of rsyslog such as connection-oriented (i.e. TCP) transmission of logs, the option to log to database formats, and the encryption of log data en route to a central logging server) justify installing and configuring the package." 
+#   describe package('rsyslog') do
+#     it { should be_installed }
+#   end
+# end
 
-control "cis-5-1-2" do
-  impact 1.0
-  title "5.1.2 Activate the rsyslog Service (Scored)"
-  desc "It is important to ensure that syslog is turned off so that it does not interfere with the rsyslog service." 
-  describe package('rsyslog') do
-    it { should be_enabled }
-  end
-  describe package('syslog') do
-    it { should be_disabled }
-  end
-end
+# control "cis-5-1-2" do
+#   impact 1.0
+#   title "5.1.2 Activate the rsyslog Service (Scored)"
+#   desc "It is important to ensure that syslog is turned off so that it does not interfere with the rsyslog service." 
+#   describe package('rsyslog') do
+#     it { should be_enabled }
+#   end
+#   describe package('syslog') do
+#     it { should be_disabled }
+#   end
+# end
 
 control "cis-5-1-3" do
   impact 1.0
@@ -31,14 +31,14 @@ control "cis-5-1-4" do
   desc "It is important to ensure that log files exist and have the correct permissions to ensure that sensitive rsyslog data is archived and protected." 
 end
 
-control "cis-5-2-1-1" do
-  impact 1.0
-  title "5.2.1.1 Configure Audit Log Storage Size (Not Scored)"
-  desc "It is important that an appropriate size is determined for log files so that they do not impact the system and audit data is not lost."
-  describe auditd_conf do
-    its('max_log_file') { should cmp 6 }
-  end  
-end
+# control "cis-5-2-1-1" do
+#   impact 1.0
+#   title "5.2.1.1 Configure Audit Log Storage Size (Not Scored)"
+#   desc "It is important that an appropriate size is determined for log files so that they do not impact the system and audit data is not lost."
+#   describe auditd_conf do
+#     its('max_log_file') { should cmp 6 }
+#   end  
+# end
 
 control "cis-5-2-1-2" do
   impact 1.0
@@ -47,8 +47,16 @@ control "cis-5-2-1-2" do
   describe auditd_conf do
     its('action_mail_acct') { should cmp 'root' }
     its('space_left_action') { should cmp 'email' }
-    its('admin_space_left') { should cmp 1 }
+    # its('admin_space_left') { should cmp 1 }
     its('admin_space_left_action') { should cmp 'halt' }
   end
 end  
 
+# control "cis-5-2-1-3" do
+#   impact 1.0
+#   title "5.2.1.3 Keep All Auditing Information (Scored)"
+#   desc "In high security contexts, the benefits of maintaining a long audit history exceed the cost of storing the audit history."
+#   describe auditd_conf do
+#    its('max_log_file') { should match 'keep_logs' }
+#   end
+# end  
