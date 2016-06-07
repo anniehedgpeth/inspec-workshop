@@ -1,11 +1,11 @@
-#control "cis-4-1-1" do
-#  impact 1.0
-#  title "4.1.1 Disable IP Forwarding (Scored)"
-#  desc "Setting the flag to 0 ensures that a server with multiple interfaces (for example, a hard #proxy), will never be able to forward packets, and therefore, never serve as a router." 
-#  describe kernel_parameter('net.ipv4.ip_forward') do
-#    its('value') { should eq 0 }
-#  end
-#end  
+control "cis-4-1-1" do
+ impact 1.0
+ title "4.1.1 Disable IP Forwarding (Scored)"
+ desc "Setting the flag to 0 ensures that a server with multiple interfaces (for example, a hard #proxy), will never be able to forward packets, and therefore, never serve as a router." 
+ describe kernel_parameter('net.ipv4.ip_forward') do
+   its('value') { should eq 0 }
+ end
+end  
 #
 #control "cis-4-1-2" do
 #  impact 1.0
