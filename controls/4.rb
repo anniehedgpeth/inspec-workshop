@@ -14,15 +14,15 @@ control "cis-4-1-2" do
  describe kernel_parameter('net.ipv4.conf.all.send_redirects') do
    its('value') { should eq 0 }
  end
-#  describe kernel_parameter('net.ipv4.conf.default.send_redirects') do
-#  its('value') { should eq 0 }
-#  end
+ describe kernel_parameter('net.ipv4.conf.default.send_redirects') do
+   its('value') { should eq 0 }
+ end
 end
 
 #control "cis-4-2-1" do
 #  impact 1.0
 #  title "4.2.1 Disable Source Routed Packet Acceptance (Scored)"
-#  desc "Settingnet.ipv4.conf.all.accept_source_route and net.ipv4.conf.default.accept_source_route #to 0 disables the system from accepting source routed packets. Assume this server was capable of #routing packets to Internet routable addresses on one interface and private addresses on another #interface. Assume that the private addresses were not routable to the Internet routable addresses #and vice versa. Under normal routing circumstances, an attacker from the Internet routable #addresses could not use the server as a way to reach the private address servers. If, however, #source routed packets were allowed, they could be used to gain access to the private address #systems as the route could be specified, rather than rely on routing protocols that did not allow #this routing." 
+#  desc "Settingnet.ipv4.conf.all.accept_source_route and net.ipv4.conf.default.accept_source_route #to 0 disables the system from accepting source routed packets. Assume this server was capable of #routing packets to Internet routable addresses on one interface and private addresses on another #interface. Assume that the private addresses were not routable to the Internet routable addresses #and vice versa. Under normal routing circumstances, an attacker from the Internet routable #addresses could not use the server as a way to reach the private address servers. If, however, source routed packets were allowed, they could be used to gain access to the private address #systems as the route could be specified, rather than rely on routing protocols that did not allow #this routing." 
 #  describe kernel_parameter('net.ipv4.conf.all.accept_source_route') do
 #    its('value') { should eq 0 }
 #  end
