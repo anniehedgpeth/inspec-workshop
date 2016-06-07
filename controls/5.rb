@@ -25,11 +25,11 @@ control "cis-5-1-3" do
   desc "A great deal of important security-related information is sent via rsyslog (e.g., successful and failed su attempts, failed login attempts, root login attempts, etc.)." 
 end
 
-control "cis-5-1-4" do
-  impact 1.0
-  title "5.1.4 Create and Set Permissions on rsyslog Log Files (Scored)"
-  desc "It is important to ensure that log files exist and have the correct permissions to ensure that sensitive rsyslog data is archived and protected." 
-end
+# control "cis-5-1-4" do
+#   impact 1.0
+#   title "5.1.4 Create and Set Permissions on rsyslog Log Files (Scored)"
+#   desc "It is important to ensure that log files exist and have the correct permissions to ensure that sensitive rsyslog data is archived and protected." 
+# end
 
 # control "cis-5-2-1-1" do
 #   impact 1.0
