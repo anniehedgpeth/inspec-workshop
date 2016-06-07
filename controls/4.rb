@@ -30,19 +30,19 @@ control "cis-4-2-1" do
  its('value') { should eq 0 }
  end
 end
-#
-#control "cis-4-2-2" do
-#  impact 1.0
-#  title "4.2.2 Disable ICMP Redirect Acceptance (Scored)"
-#  desc "Attackers could use bogus ICMP redirect messages to maliciously alter the system routing #tables and get them to send packets to incorrect networks and allow your system packets to be #captured." 
-#  describe kernel_parameter('net.ipv4.conf.all.accept_redirects') do
-#    its('value') { should eq 0 }
-#  end
-#  describe kernel_parameter('net.ipv4.conf.default.accept_redirects') do
-#  its('value') { should eq 0 }
-#  end
-#end
-#
+
+control "cis-4-2-2" do
+ impact 1.0
+ title "4.2.2 Disable ICMP Redirect Acceptance (Scored)"
+ desc "Attackers could use bogus ICMP redirect messages to maliciously alter the system routing #tables and get them to send packets to incorrect networks and allow your system packets to be #captured." 
+ describe kernel_parameter('net.ipv4.conf.all.accept_redirects') do
+   its('value') { should eq 0 }
+ end
+ describe kernel_parameter('net.ipv4.conf.default.accept_redirects') do
+   its('value') { should eq 0 }
+ end
+end
+
 #control "cis-4-2-3" do
 #  impact 1.0
 #  title "4.2.3 Disable Secure ICMP Redirect Acceptance (Scored)"
