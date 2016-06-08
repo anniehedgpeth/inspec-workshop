@@ -128,7 +128,6 @@ control "cis-4-5-4" do
     it { should exist }
   end
 end
-#might need to be configured with ip addresses included
 
 control "cis-4-5-5" do
   impact 1.0
