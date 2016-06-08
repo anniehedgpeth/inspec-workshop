@@ -55,17 +55,17 @@ control "cis-4-2-3" do
  end
 end
 
-#control "cis-4-2-4" do
-#  impact 1.0
-#  title "4.2.4 Log Suspicious Packets (Scored)"
-#  desc "Enabling this feature and logging these packets allows an administrator to investigate the #possibility that an attacker is sending spoofed packets to their server." 
-#  describe kernel_parameter('net.ipv4.conf.all.log_martians') do
-#    its('value') { should eq 1 }
-#  end
-#  describe kernel_parameter('net.ipv4.conf.default.log_martians') do
-#  its('value') { should eq 1 }
-#  end
-#end
+control "cis-4-2-4" do
+ impact 1.0
+ title "4.2.4 Log Suspicious Packets (Scored)"
+ desc "Enabling this feature and logging these packets allows an administrator to investigate the #possibility that an attacker is sending spoofed packets to their server." 
+ describe kernel_parameter('net.ipv4.conf.all.log_martians') do
+   its('value') { should eq 1 }
+ end
+ describe kernel_parameter('net.ipv4.conf.default.log_martians') do
+ its('value') { should eq 1 }
+ end
+end
 #
 #control "cis-4-2-5" do
 #  impact 1.0
