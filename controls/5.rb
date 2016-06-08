@@ -47,7 +47,7 @@ control "cis-5-2-1-2" do
   describe auditd_conf do
     its('action_mail_acct') { should cmp 'root' }
     its('space_left_action') { should cmp 'email' }
-    # its('admin_space_left') { should cmp 1 }
+    its('admin_space_left') { should cmp 1 }
     its('admin_space_left_action') { should cmp 'halt' }
   end
 end  
