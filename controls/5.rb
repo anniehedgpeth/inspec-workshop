@@ -68,4 +68,22 @@ control "cis-5-2-2" do
   describe service('auditd') do
     it { should be_enabled }
   end
-end 
+end
+
+# control "cis-5-2-3" do
+#   impact 1.0
+#   title "5.2.3 Enable Auditing for Processes That Start Prior to auditd (Scored)"
+#   desc "Audit events need to be captured on processes that start up prior to auditd, so that potential malicious activity cannot go undetected."
+# end
+
+# control "cis-5-2-4" do
+#   impact 1.0
+#   title "5.2.4 Record Events That Modify Date and Time Information (Scored)"
+#   desc "Capture events where the system date and/or time has been modified. The parameters in this section are set to determine if the adjtimex (tune kernel clock), settimeofday (Set time, using timeval and timezone structures) stime (using seconds since 1/1/1970) or clock_settime (allows for the setting of several internal clocks and timers) system calls have been executed and always write an audit record to the /var/log/audit.log file upon exit, tagging the records with the identifier "time-change""
+# end
+
+# control "cis-5-2-5" do
+#   impact 1.0
+#   title "5.2.5 Record Events That Modify User/Group Information (Scored)"
+#   desc "Record events affecting the group, passwd (user IDs), shadow and gshadow (passwords) or /etc/security/opasswd (old passwords, based on remember parameter in the PAM configuration) files. The parameters in this section will watch the files to see if they have been opened for write or have had attribute changes (e.g. permissions) and tag them with the identifier "identity" in the audit log file."
+# end
