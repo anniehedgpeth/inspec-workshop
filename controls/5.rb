@@ -60,3 +60,12 @@ control "cis-5-2-1-3" do
     its('max_log_file_action') { should cmp 'keep_logs' }
   end
 end  
+
+control "cis-5-2-2" do
+  impact 1.0
+  title "5.2.2 Enable auditd Service (Scored)"
+  desc "The capturing of system events provides system administrators with information to allow them to determine if unauthorized access to their system is occurring."
+  describe service('auditd') do
+    it { should be_enabled }
+  end
+end 
