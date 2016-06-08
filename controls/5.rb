@@ -31,14 +31,14 @@ end
 #   desc "It is important to ensure that log files exist and have the correct permissions to ensure that sensitive rsyslog data is archived and protected." 
 # end
 
-# control "cis-5-2-1-1" do
-#   impact 1.0
-#   title "5.2.1.1 Configure Audit Log Storage Size (Not Scored)"
-#   desc "It is important that an appropriate size is determined for log files so that they do not impact the system and audit data is not lost."
-#   describe auditd_conf do
-#     its('max_log_file') { should cmp 6 }
-#   end  
-# end
+control "cis-5-2-1-1" do
+  impact 1.0
+  title "5.2.1.1 Configure Audit Log Storage Size (Not Scored)"
+  desc "It is important that an appropriate size is determined for log files so that they do not impact the system and audit data is not lost."
+  describe auditd_conf do
+    its('max_log_file') { should cmp 6 }
+  end  
+end
 
 control "cis-5-2-1-2" do
   impact 1.0
