@@ -36,7 +36,7 @@ control "cis-5-2-1-1" do
   title "5.2.1.1 Configure Audit Log Storage Size (Not Scored)"
   desc "It is important that an appropriate size is determined for log files so that they do not impact the system and audit data is not lost."
   describe auditd_conf do
-    its('max_log_file') { should cmp 6 }
+    its('max_log_file') { should cmp 100 }
   end  
 end
 
@@ -52,11 +52,11 @@ control "cis-5-2-1-2" do
   end
 end  
 
-# control "cis-5-2-1-3" do
-#   impact 1.0
-#   title "5.2.1.3 Keep All Auditing Information (Scored)"
-#   desc "In high security contexts, the benefits of maintaining a long audit history exceed the cost of storing the audit history."
-#   describe auditd_conf do
-#    its('max_log_file') { should match 'keep_logs' }
-#   end
-# end  
+control "cis-5-2-1-3" do
+  impact 1.0
+  title "5.2.1.3 Keep All Auditing Information (Scored)"
+  desc "In high security contexts, the benefits of maintaining a long audit history exceed the cost of storing the audit history."
+  describe auditd_conf do
+    its('max_log_file_action') { should cmp 'keep_logs' }
+  end
+end  
