@@ -43,18 +43,18 @@ control "cis-4-2-2" do
  end
 end
 
-#control "cis-4-2-3" do
-#  impact 1.0
-#  title "4.2.3 Disable Secure ICMP Redirect Acceptance (Scored)"
-#  desc "It is still possible for even known gateways to be compromised. Setting #net.ipv4.conf.all.secure_redirects to 0 protects the system from routing table updates by #possibly compromised known gateways." 
-#  describe kernel_parameter('net.ipv4.conf.all.secure_redirects') do
-#    its('value') { should eq 0 }
-#  end
-#  describe kernel_parameter('net.ipv4.conf.default.secure_redirects') do
-#  its('value') { should eq 0 }
-#  end
-#end
-#
+control "cis-4-2-3" do
+ impact 1.0
+ title "4.2.3 Disable Secure ICMP Redirect Acceptance (Scored)"
+ desc "It is still possible for even known gateways to be compromised. Setting #net.ipv4.conf.all.secure_redirects to 0 protects the system from routing table updates by #possibly compromised known gateways." 
+ describe kernel_parameter('net.ipv4.conf.all.secure_redirects') do
+   its('value') { should eq 0 }
+ end
+ describe kernel_parameter('net.ipv4.conf.default.secure_redirects') do
+   its('value') { should eq 0 }
+ end
+end
+
 #control "cis-4-2-4" do
 #  impact 1.0
 #  title "4.2.4 Log Suspicious Packets (Scored)"
