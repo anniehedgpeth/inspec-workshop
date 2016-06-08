@@ -84,7 +84,6 @@ control "cis-4-5-1" do
     it { should be_installed }
   end
 end
-##not written properly and may need remediation
 
 control "cis-4-5-2" do
  impact 1.0
@@ -94,7 +93,6 @@ control "cis-4-5-2" do
    it { should exist }
  end
 end
-#might need specified ip address permissions 
 
 control "cis-4-5-3" do
  impact 1.0
@@ -114,7 +112,8 @@ control "cis-4-5-3" do
     it { should be_readable.by "group" }
     it { should_not be_writable.by "group" }
     it { should_not be_executable.by "other" }
-    it { should be_readable.by "other" }#    it { should_not be_writable.by "other" }
+    it { should be_readable.by "other" }
+    it { should_not be_writable.by "other" }
     it { should_not be_executable.by "owner" }
     it { should be_readable.by "owner" }
     it { should be_writable.by "owner" }
