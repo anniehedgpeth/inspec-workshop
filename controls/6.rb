@@ -75,22 +75,15 @@ end
 #   end
 # end
 
-# control "cis-6-1-8" do
-#   impact 1.0
-#   title "6.1.8 Set User/Group Owner and Permission on /etc/cron.monthly (Scored)"
-#   desc "The /etc/cron.monthly directory contains system cron jobs that need to run on a monthly basis. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory." 
-#   describe file('/etc/cron.monthly') do
-#     it { should exist }
-#     it { should_not be_executable.by "group" }
-#     it { should_not be_readable.by "group" }
-#     it { should_not be_writable.by "group" }
-#     it { should_not be_executable.by "other" }
-#     it { should_not be_readable.by "other" }
-#     it { should_not be_writable.by "other" }
-#     its("gid") { should cmp 0 }
-#     its("uid") { should cmp 0 }
-#   end
-# end
+control "cis-6-1-8" do
+  impact 1.0
+  title "6.1.8 Set User/Group Owner and Permission on /etc/cron.monthly (Scored)"
+  desc "The /etc/cron.monthly directory contains system cron jobs that need to run on a monthly basis. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory." 
+  describe file('/etc/cron.monthly') do
+    it { should exist }
+    its('mode') {should eq 0600}
+  end
+end
 
 # control "cis-6-1-9" do
 #   impact 1.0
@@ -141,5 +134,14 @@ control "6-2-3" do
     it { should_not be_writable.by "other" }
     its("gid") { should cmp 0 }
     its("uid") { should cmp 0 }
+    end
+end
+
+control "6-2-4" do
+    impact 1
+    title "6.2.4 Disable SSH X11 Forwarding (Scored)"
+    desc "The X11Forwarding parameter provides the ability to tunnel X11 traffic through the connection to enable remote graphic connections."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^X11Forwarding no'}
     end
 end
