@@ -7,22 +7,15 @@ control "cis-6-1-2" do
   end
 end
 
-# control "cis-6-1-4" do
-#   impact 1.0
-#   title "6.1.4 Set User/Group Owner and Permission on /etc/crontab (Scored)"
-#   desc "The /etc/crontab file is used by cron to control its own jobs. The commands in this item make here sure that root is the user and group owner of the file and is the only user that can read and write the file." 
-#   describe file('/etc/crontab') do
-#     it { should exist }
-#     it { should_not be_executable.by "group" }
-#     it { should_not be_readable.by "group" }
-#     it { should_not be_writable.by "group" }
-#     it { should_not be_executable.by "other" }
-#     it { should_not be_readable.by "other" }
-#     it { should_not be_writable.by "other" }
-#     its("gid") { should cmp 0 }
-#     its("uid") { should cmp 0 }
-#   end
-# end
+control "cis-6-1-4" do
+  impact 1.0
+  title "6.1.4 Set User/Group Owner and Permission on /etc/crontab (Scored)"
+  desc "The /etc/crontab file is used by cron to control its own jobs. The commands in this item make here sure that root is the user and group owner of the file and is the only user that can read and write the file." 
+  describe file('/etc/crontab') do
+    it { should exist }
+    its('mode') {should eq 0600}
+  end
+end
 
 # control "cis-6-1-5" do
 #   impact 1.0
