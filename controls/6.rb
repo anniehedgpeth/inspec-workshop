@@ -116,4 +116,22 @@ control "6-2-1" do
     describe file('/etc/ssh/sshd_config') do
       its ('content')  {should match 'Protocol 2'}
     end
-end    
+end
+
+control "6-2-2" do
+    impact 1
+    title "6.2.2 Set LogLevel to INFO (Scored)"
+    desc "The INFO parameter specifices that record login and logout activity will be logged."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match 'LogLevel INFO'}
+    end
+end
+
+# control "6-2-3" do
+#     impact 1
+#     title "6.2.3 Set Permissions on /etc/ssh/sshd_config (Scored)"
+#     desc "The /etc/ssh/sshd_config file contains configuration specifications for sshd. The command below sets the owner and group of the file to root."
+#     describe file('/etc/ssh/sshd_config') do
+#       its ('content')  {should match 'Protocol 2'}
+#     end
+# end
