@@ -24,3 +24,12 @@ control "cis-6-1-5" do
     its('owner') { should eq 'root' }
   end
 end
+
+control "cis-6-1-6" do
+  impact 1.0
+  title "6.1.6 Set User/Group Owner and Permission on /etc/cron.daily (Scored)"
+  desc "The /etc/cron.daily directory contains system cron jobs that need to run on a daily basis. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory." 
+  describe file('/etc/cron.daily') do
+    its('owner') { should eq 'root' }
+  end
+end
