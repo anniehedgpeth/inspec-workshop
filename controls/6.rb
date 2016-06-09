@@ -112,3 +112,12 @@ control "6-2-5" do
       its ('content')  {should match '^MaxAuthTries 4'}
     end
 end
+
+control "6-2-6" do
+    impact 1
+    title "6.2.6 Set SSH IgnoreRhosts to Yes (Scored)"
+    desc "The IgnoreRhosts parameter specifies that .rhosts and .shosts files will not be used in RhostsRSAAuthentication orHostbasedAuthentication."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^IgnoreRhosts yes'}
+    end
+end
