@@ -207,14 +207,14 @@ control "6-3-1" do
     end
 end
 
-# control "6-3-2" do
-#     impact 1
-#     title "6.3.2 Set Password Creation Requirement Parameters Using pam_cracklib (Scored)"
-#     desc "Strong passwords protect systems from being hacked through brute force methods."
-#     describe file('/etc/pam_cracklib.so') do
-#       its ('content')  {should match '^Banner /etc/issue.net'}
-#     end
-# end
+control "6-3-2" do
+    impact 1
+    title "6.3.2 Set Password Creation Requirement Parameters Using pam_cracklib (Scored)"
+    desc "Strong passwords protect systems from being hacked through brute force methods."
+    describe file('/etc/pam.d/system-auth') do
+      its ('content')  {should match '^password required pam_cracklib.so try_first_pass retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1'}
+    end
+end
 
 # control "6-3-3" do
 #     impact 1
