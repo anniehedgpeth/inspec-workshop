@@ -127,11 +127,19 @@ control "6-2-2" do
     end
 end
 
-# control "6-2-3" do
-#     impact 1
-#     title "6.2.3 Set Permissions on /etc/ssh/sshd_config (Scored)"
-#     desc "The /etc/ssh/sshd_config file contains configuration specifications for sshd. The command below sets the owner and group of the file to root."
-#     describe file('/etc/ssh/sshd_config') do
-#       its ('content')  {should match 'Protocol 2'}
-#     end
-# end
+control "6-2-3" do
+    impact 1
+    title "6.2.3 Set Permissions on /etc/ssh/sshd_config (Scored)"
+    desc "The /etc/ssh/sshd_config file contains configuration specifications for sshd. The command below sets the owner and group of the file to root."
+    describe file('/etc/ssh/sshd_config') do
+    it { should exist }
+    it { should_not be_executable.by "group" }
+    it { should_not be_readable.by "group" }
+    it { should_not be_writable.by "group" }
+    it { should_not be_executable.by "other" }
+    it { should_not be_readable.by "other" }
+    it { should_not be_writable.by "other" }
+    its("gid") { should cmp 0 }
+    its("uid") { should cmp 0 }
+    end
+end
