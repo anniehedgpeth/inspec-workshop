@@ -57,22 +57,15 @@ control "cis-6-1-8" do
   end
 end
 
-# control "cis-6-1-9" do
-#   impact 1.0
-#   title "6.1.9 Set User/Group Owner and Permission on /etc/cron.d (Scored)"
-#   desc "TThe /etc/cron.d directory contains system cron jobs that need to run in a similar manner to the hourly, daily weekly and monthly jobs from /etc/crontab, but require more granular control as to when they run. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory." 
-#   describe file('/etc/cron.d') do
-#     it { should exist }
-#     it { should_not be_executable.by "group" }
-#     it { should_not be_readable.by "group" }
-#     it { should_not be_writable.by "group" }
-#     it { should_not be_executable.by "other" }
-#     it { should_not be_readable.by "other" }
-#     it { should_not be_writable.by "other" }
-#     its("gid") { should cmp 0 }
-#     its("uid") { should cmp 0 }
-#   end
-# end
+control "cis-6-1-9" do
+  impact 1.0
+  title "6.1.9 Set User/Group Owner and Permission on /etc/cron.d (Scored)"
+  desc "TThe /etc/cron.d directory contains system cron jobs that need to run in a similar manner to the hourly, daily weekly and monthly jobs from /etc/crontab, but require more granular control as to when they run. The files in this directory cannot be manipulated by the crontab command, but are instead edited by system administrators using a text editor. The commands below restrict read/write and search access to user and group root, preventing regular users from accessing this directory." 
+  describe file('/etc/cron.d') do
+    it { should exist }
+    its('mode') {should eq 0600}
+  end
+end
 
 control "6-2-1" do
     impact 1
