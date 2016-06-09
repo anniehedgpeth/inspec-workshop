@@ -91,14 +91,7 @@ control "6-2-3" do
     desc "The /etc/ssh/sshd_config file contains configuration specifications for sshd. The command below sets the owner and group of the file to root."
     describe file('/etc/ssh/sshd_config') do
     it { should exist }
-    it { should_not be_executable.by "group" }
-    it { should_not be_readable.by "group" }
-    it { should_not be_writable.by "group" }
-    it { should_not be_executable.by "other" }
-    it { should_not be_readable.by "other" }
-    it { should_not be_writable.by "other" }
-    its("gid") { should cmp 0 }
-    its("uid") { should cmp 0 }
+    its('mode') {should eq 0600}
     end
 end
 
@@ -108,5 +101,14 @@ control "6-2-4" do
     desc "The X11Forwarding parameter provides the ability to tunnel X11 traffic through the connection to enable remote graphic connections."
     describe file('/etc/ssh/sshd_config') do
       its ('content')  {should match '^X11Forwarding no'}
+    end
+end
+
+control "6-2-5" do
+    impact 1
+    title "6.2.5 Set SSH MaxAuthTries to 4 or Less (Scored)"
+    desc "The MaxAuthTries parameter specifies the maximum number of authentication attempts permitted per connection. When the login failure count reaches half the number, error messages will be written to the syslog file detailing the login failure."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^MaxAuthTries 4'}
     end
 end
