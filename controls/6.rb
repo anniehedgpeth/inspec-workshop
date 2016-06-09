@@ -197,3 +197,39 @@ control "6-2-14" do
       its ('content')  {should match '^Banner /etc/issue.net'}
     end
 end
+
+control "6-3-1" do
+    impact 1
+    title "6.3.1 Upgrade Password Hashing Algorithm to SHA-512 (Scored)"
+    desc "The commands below change password encryption from md5 to sha512 (a much stronger hashing algorithm). All existing accounts will need to perform a password change to upgrade the stored hashes to the new algorithm."
+    describe command('authconfig --test | grep hashing | grep sha512') do
+      its('stdout') { should match (/sha512/) }
+    end
+end
+
+# control "6-3-2" do
+#     impact 1
+#     title "6.3.2 Set Password Creation Requirement Parameters Using pam_cracklib (Scored)"
+#     desc "Strong passwords protect systems from being hacked through brute force methods."
+#     describe file('/etc/pam_cracklib.so') do
+#       its ('content')  {should match '^Banner /etc/issue.net'}
+#     end
+# end
+
+# control "6-3-3" do
+#     impact 1
+#     title "6.2.14 Set SSH Banner (Scored)"
+#     desc "The Banner parameter specifies a file whose contents must be sent to the remote user before authentication is permitted. By default, no banner is displayed."
+#     describe file('/etc/ssh/sshd_config') do
+#       its ('content')  {should match '^Banner /etc/issue.net'}
+#     end
+# end
+
+# control "6-3-4" do
+#     impact 1
+#     title "6.2.14 Set SSH Banner (Scored)"
+#     desc "The Banner parameter specifies a file whose contents must be sent to the remote user before authentication is permitted. By default, no banner is displayed."
+#     describe file('/etc/ssh/sshd_config') do
+#       its ('content')  {should match '^Banner /etc/issue.net'}
+#     end
+# end
