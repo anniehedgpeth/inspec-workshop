@@ -130,3 +130,70 @@ control "6-2-7" do
       its ('content')  {should match '^HostbasedAuthentication no'}
     end
 end
+
+control "6-2-8" do
+    impact 1
+    title "6.2.8 Disable SSH Root Login (Scored)"
+    desc "The PermitRootLogin parameter specifies if the root user can log in using ssh(1). The default is no."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^PermitRootLogin no'}
+    end
+end
+
+control "6-2-9" do
+    impact 1
+    title "6.2.9 Set SSH PermitEmptyPasswords to No (Scored)"
+    desc "The PermitEmptyPasswords parameter specifies if the server allows login to accounts with empty password strings."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^PermitEmptyPasswords no'}
+    end
+end
+
+control "6-2-10" do
+    impact 1
+    title "6.2.10 Do Not Allow Users to Set Environment Options (Scored)"
+    desc "The PermitUserEnvironment option allows users to present environment options to the ssh daemon."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^PermitUserEnvironment no'}
+    end
+end
+
+control "6-2-11" do
+    impact 1
+    title "6.2.11 Use Only Approved Cipher in Counter Mode (Scored)"
+    desc "This variable limits the types of ciphers that SSH can use during communication."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^Ciphers aes128-ctr,aes192-ctr,aes256-ctr'}
+    end
+end
+
+control "6-2-12" do
+    impact 1
+    title "6.2.12 Set Idle Timeout Interval for User Login (Scored)"
+    desc "The two options ClientAliveInterval and ClientAliveCountMax control the timeout of ssh sessions. When the ClientAliveInterval variable is set, ssh sessions that have no activity for the specified length of time are terminated. When the ClientAliveCountMax variable is set, sshd will send client alive messages at every ClientAliveInterval interval. When the number of consecutive client alive messages are sent with no response from the client, the ssh session is terminated. For example, if the ClientAliveInterval is set to 15 seconds and the ClientAliveCountMax is set to 3, the client ssh session will be terminated after 45 seconds of idle time."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^ClientAliveInterval 300'}
+      its ('content')  {should match '^ClientAliveCountMax 0'}
+    end
+end
+
+control "6-2-13" do
+    impact 1
+    title "6.2.13 Limit Access via SSH (Scored)"
+    desc "Restricting which users can remotely access the system via SSH will help ensure that only authorized users access the system."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^AllowUsers <userlist>'}
+      its ('content')  {should match '^DenyUsers <userlist>'}
+      its ('content')  {should match '^DenyGroups <grouplist>'}
+      its ('content')  {should match '^AllowGroups <grouplist>'}
+    end
+end
+
+control "6-2-14" do
+    impact 1
+    title "6.2.14 Set SSH Banner (Scored)"
+    desc "The Banner parameter specifies a file whose contents must be sent to the remote user before authentication is permitted. By default, no banner is displayed."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^Banner /etc/issue.net'}
+    end
+end
