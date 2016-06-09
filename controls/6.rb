@@ -121,3 +121,12 @@ control "6-2-6" do
       its ('content')  {should match '^IgnoreRhosts yes'}
     end
 end
+
+control "6-2-7" do
+    impact 1
+    title "6.2.7 Set SSH HostbasedAuthentication to No (Scored)"
+    desc "The HostbasedAuthentication parameter specifies if authentication is allowed through trusted hosts via the user of .rhosts, or /etc/hosts.equiv, along with successful public key client host authentication. This option only applies to SSH Protocol Version 2."
+    describe file('/etc/ssh/sshd_config') do
+      its ('content')  {should match '^HostbasedAuthentication no'}
+    end
+end
