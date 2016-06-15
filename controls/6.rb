@@ -218,10 +218,9 @@ end
 
 # control "6-3-3" do
 #     impact 1
-#     title "6.2.14 Set SSH Banner (Scored)"
-#     desc "The Banner parameter specifies a file whose contents must be sent to the remote user before authentication is permitted. By default, no banner is displayed."
-#     describe file('/etc/ssh/sshd_config') do
-#       its ('content')  {should match '^Banner /etc/issue.net'}
+#     title "6.3.3 Set Lockout for Failed Password Attempts (Not Scored)"
+#     desc "Lock out userIDs after n unsuccessful consecutive login attempts. The first sets of changes are made to the main PAM configuration files /etc/pam.d/system-auth and /etc/pam.d/password-auth. The second set of changes are applied to the program specific PAM configuration file (in this case, the ssh daemon). The second set of changes must be applied to each program that will lock out userID's."
+
 #     end
 # end
 
