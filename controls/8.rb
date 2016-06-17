@@ -5,6 +5,12 @@ control "8-1" do
     describe file('/etc/motd') do
         it { should be_owned_by 'root' }
     end
+    describe file('/etc/issue') do
+        it { should be_owned_by 'root' }
+    end
+    describe file('/etc/issue.net') do
+        it { should be_owned_by 'root' }
+    end    
 end 
 
 #control "8-2" do
