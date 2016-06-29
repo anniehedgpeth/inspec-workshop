@@ -26,23 +26,32 @@ control "9-1-4" do
   desc "The /etc/gshadow file contains information about group accounts that is critical to the security of those accounts, such as the hashed password and other security information."
   describe file('/etc/gshadow') do
       it { should exist }
-      it { should be_owned_by 'root'} 
+      it { should be_owned_by 'root' } 
       its('mode') { should eq 0000 }
   end
 end
         
 control "9-1-5" do
-  impact
+  impact 1
   title "9.1.5 Verify Permissions on /etc/group (Scored)"
   desc "The /etc/group file contains a list of all the valid groups defined in the system. The command below allows read/write access for root and read access for everyone else."
   describe file('/etc/group') do
     it { should exist }
-    it { should be_owned_by 'root'}
+    it { should be_owned_by 'root' }
     its('mode') { should eq 0644 }
   end
-end  
+end
       
-# 9.1.6 Verify User/Group Ownership on /etc/passwd
+control "9-1-6" do
+  impact 1
+  title "9.1.6 Verify User/Group Ownership on /etc/passwd"
+  desc "The /etc/passwd file contains a list of all the valid userIDs defined in the system, but not the passwords. The command below sets the owner and group of the file to root."
+  describe file('/etc/passwd') do
+    it { should  be_owned_by 'root' }
+    its('group') { should eq 'root' }
+    its('owner') { should eq 'root' }
+  end
+end
 # 9.1.7 Verify User/Group Ownership on /etc/shadow
 # 9.1.8 Verify User/Group Ownership on /etc/gshadow
 # 9.1.9 Verify User/Group Ownership on /etc/group
