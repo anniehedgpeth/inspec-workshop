@@ -73,7 +73,18 @@ control "9-1-8" do
     its('group') { should eq 'root' }
     its('owner') { should eq 'root' }
   end
-end  
-# 9.1.9 Verify User/Group Ownership on /etc/group
+end
+ 
+control "9-1-9" do
+  impact 1
+  title "9.1.9 Verify User/Group Ownership on /etc/group"
+  desc "The /etc/group file contains a list of all the valid groups defined in the system. The command below allows read/write access for root and read access for everyone else."
+  describe file('/etc/group') do
+    it { should  be_owned_by 'root' }
+    its('group') { should eq 'root' }
+    its('owner') { should eq 'root' }
+  end
+end
+
 # 9.2.5 Verify No UID 0 Accounts Exist Other Than root
 # 9.2.14 Check for Duplicate UIDs
