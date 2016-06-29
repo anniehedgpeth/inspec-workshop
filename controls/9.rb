@@ -86,5 +86,14 @@ control "9-1-9" do
   end
 end
 
-# 9.2.5 Verify No UID 0 Accounts Exist Other Than root
+control "9-2-5" do
+  impact 1
+  title "9.2.5 Verify No UID 0 Accounts Exist Other Than root"
+  desc "This access must be limited to only the default root account and only from the system console. Administrative access must be through an unprivileged account using an approved mechanism as noted in Item 7.5 Restrict root Login to System Console."
+  describe passwd.uids(0) do
+    its('users') { should cmp 'root' }
+    its('count') { should eq 1 }
+  end  
+end
+
 # 9.2.14 Check for Duplicate UIDs
