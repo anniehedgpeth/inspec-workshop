@@ -46,8 +46,7 @@ control "8-1" do
         it { should_not be_executable.by "owner" }
         it { should be_readable.by "owner" }
         it { should be_writable.by "owner" }
-    end    
-    
+    end      
 end 
 
 control "8-2" do

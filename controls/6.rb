@@ -216,6 +216,7 @@ control "6-3-2" do
     end
 end
 
+
 # control "6-3-3" do
 #     impact 1
 #     title "6.3.3 Set Lockout for Failed Password Attempts (Not Scored)"
