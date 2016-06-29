@@ -63,7 +63,17 @@ control "9-1-7" do
     its('owner') { should eq 'root' }
   end
 end
-# 9.1.8 Verify User/Group Ownership on /etc/gshadow
+
+control "9-1-8" do
+  impact 1
+  title "9.1.8 Verify User/Group Ownership on /etc/gshadow"
+  desc "The /etc/gshadow file contains information about group accounts that is critical to the security of those accounts, such as the hashed password and other security information."
+  describe file('/etc/gshadow') do
+    it { should  be_owned_by 'root' }
+    its('group') { should eq 'root' }
+    its('owner') { should eq 'root' }
+  end
+end  
 # 9.1.9 Verify User/Group Ownership on /etc/group
 # 9.2.5 Verify No UID 0 Accounts Exist Other Than root
 # 9.2.14 Check for Duplicate UIDs
