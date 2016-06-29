@@ -52,7 +52,17 @@ control "9-1-6" do
     its('owner') { should eq 'root' }
   end
 end
-# 9.1.7 Verify User/Group Ownership on /etc/shadow
+
+control "9-1-7" do
+  impact 1
+  title "9.1.7 Verify User/Group Ownership on /etc/shadow"
+  desc "The /etc/shadow file contains the one-way cipher text passwords for each user defined in the /etc/passwd file. The command below sets the user and group ownership of the file to root."
+  describe file('/etc/shadow') do
+    it { should  be_owned_by 'root' }
+    its('group') { should eq 'root' }
+    its('owner') { should eq 'root' }
+  end
+end
 # 9.1.8 Verify User/Group Ownership on /etc/gshadow
 # 9.1.9 Verify User/Group Ownership on /etc/group
 # 9.2.5 Verify No UID 0 Accounts Exist Other Than root
