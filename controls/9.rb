@@ -96,4 +96,21 @@ control "9-2-5" do
   end  
 end
 
-# 9.2.14 Check for Duplicate UIDs
+control "9-2-14" do
+  impact 1
+  title "9.2.14 Check for Duplicate UIDs"
+  desc "Although the useradd program will not let you create a duplicate User ID (UID), it is possible for an administrator to manually edit the /etc/passwd file and change the UID field."
+  # describe passwd.uid do
+  # its('users') { should_not contain_duplicates }
+  # end
+end
+
+# from Inspec CIS
+#   describe passwd.where { user =~ /.*/ }.uids do
+#     its("length") { should_not eq 0 }
+#   end
+#   a = passwd.where { user =~ /.*/ }.uids.uniq.length
+#   describe passwd.where { user =~ /.*/ }.uids do
+#     its("length") { should cmp == a }
+#   end
+# end
